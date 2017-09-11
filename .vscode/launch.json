@@ -1,0 +1,30 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Program",
+            "program": "${workspaceRoot}/app.js",
+            "cwd": "${workspaceRoot}",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "skipFiles": [
+                "node_modules/**/*.js"
+            ],
+            "outFiles": [
+                "${workspaceRoot}/**/*.js"
+            ],
+            "console": "internalConsole"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Port",
+            "address": "localhost",
+            "port": 3000,
+            "outFiles": []
+        }
+    ]
+}

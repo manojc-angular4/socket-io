@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web Sockets</title>
+</head>
+
+<body>
+    <h1>Home</h1>
+
+    <input id="feed1_tb" type="input" placeholder="send feed1 message"> &nbsp;&nbsp;&nbsp;
+    <input id="feed1_btn" type="button" value="send feed1 message">
+    <br>
+    <hr>
+    <br>
+    <input id="feed2_tb" type="input" placeholder="send feed2 message"> &nbsp;&nbsp;&nbsp;
+    <input id="feed2_btn" type="button" value="send feed2 message">
+</body>
+    <script>
+        (function () {
+            'use strict';
+
+            var socket1 = new WebSocket('ws://localhost:3000/feed1');
+            var btn1 = document.getElementById('feed1_btn');
+            var textBox1 = document.getElementById('feed1_tb');
+            btn1.addEventListener("click", (event) => {
+                socket1.send(textBox1.value);
+            });
+            
+            var socket2 = new WebSocket('ws://localhost:3000/feed2');
+            var btn2 = document.getElementById('feed2_btn');
+            var textBox2 = document.getElementById('feed2_tb');
+            btn2.addEventListener("click", (event) => {
+                socket2.send(textBox2.value);
+            });
+        })();
+    </script>
+</html>
