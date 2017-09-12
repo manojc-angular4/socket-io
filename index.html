@@ -10,7 +10,7 @@
 
 <body>
     <h1>Home</h1>
-
+    <span id="asd"> </span>
     <input id="feed1_tb" type="input" placeholder="send feed1 message"> &nbsp;&nbsp;&nbsp;
     <input id="feed1_btn" type="button" value="send feed1 message">
     <br>
@@ -22,20 +22,27 @@
     <script>
         (function () {
             'use strict';
-
-            var socket1 = new WebSocket('ws://localhost:3000/feed1');
+            var asd=  document.getElementById('asd');
+            var socket1 = new WebSocket('ws://192.168.1.139:3000/feed1');
             var btn1 = document.getElementById('feed1_btn');
             var textBox1 = document.getElementById('feed1_tb');
             btn1.addEventListener("click", (event) => {
                 socket1.send(textBox1.value);
             });
+            socket1.onmessage = function (message) {
+                console.log(message.data);
+            }
             
-            var socket2 = new WebSocket('ws://localhost:3000/feed2');
+            var socket2 = new WebSocket('ws://192.168.1.139:3000/feed2');
             var btn2 = document.getElementById('feed2_btn');
             var textBox2 = document.getElementById('feed2_tb');
             btn2.addEventListener("click", (event) => {
                 socket2.send(textBox2.value);
             });
+            socket2.onmessage = function (message) {
+                console.log(message.data);
+                asd.innerHTML = message.data;
+            }
         })();
     </script>
 </html>
